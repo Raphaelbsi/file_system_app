@@ -17,7 +17,7 @@ services:
       - RAILS_ENV=development
     command: bash -c "bundle exec rails s -b 0.0.0.0 -p 3000"
     volumes:
-      - .:/app
+      - .:/rails
     ports:
       - '3000:3000'
     depends_on:
