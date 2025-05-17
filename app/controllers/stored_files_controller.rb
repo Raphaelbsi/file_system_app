@@ -7,6 +7,11 @@ class StoredFilesController < ApplicationController
     else
       render json: { errors: stored_file.errors.full_messages }, status: :unprocessable_entity
     end
+  rescue => e
+    puts "ERRO AO SALVAR STORED FILE: #{e.message}"
+    puts e.backtrace.join("\n")
+    Rails.logger.error(e.backtrace.join("\n"))
+    render json: { error: "Erro interno: #{e.message}" }, status: :internal_server_error
   end
 
   private
