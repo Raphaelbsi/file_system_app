@@ -9,13 +9,45 @@ Este projeto é uma API Ruby on Rails que simula um sistema de arquivos com supo
 
 ---
 
+## 📦 Configuração de Armazenamento de Arquivos
+
+Este projeto suporta **três opções de armazenamento** de arquivos usando o Active Storage:
+
+| Ambiente     | Serviço       | Local de Armazenamento       |
+| ------------ | ------------- | ---------------------------- |
+| `local`      | Disco         | `storage/`                   |
+| `blob`       | Disco         | `blob/`                      |
+| `cloudflare` | Cloudflare R2 | Armazenamento externo via S3 |
+
+---
+
+# Salva os arquivos em disco no diretório padrão (./storage)
+
+config.active_storage.service = :local
+
+# Salva os arquivos em disco no diretório ./blob
+
+config.active_storage.service = :blob
+
+# Salva os arquivos na nuvem usando o Cloudflare R2
+
+config.active_storage.service = :cloudflare
+
+### ✅ Como alternar entre os serviços
+
+Abra o arquivo:
+
+````ruby
+config/environments/development.rb
+
+
 ## 🚀 Como executar
 
 1. Suba os serviços com Docker:
 
 ```bash
 docker-compose up --build
-```
+````
 
 2. Acesse os endpoints RESTful para criar diretórios e subir arquivos.
 
